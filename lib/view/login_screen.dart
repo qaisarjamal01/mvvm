@@ -19,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
@@ -62,7 +63,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               );
             }
-            )
+            ),
+            SizedBox(height: height * .1,),
           ]
         ),
       )
