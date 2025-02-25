@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm/res/components/round_button.dart';
+import 'package:mvvm/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 import '../utils/utils.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,8 +21,23 @@ class _LoginScreenState extends State<LoginScreen> {
   FocusNode passwordFocusNode = FocusNode();
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    _emailController.dispose();
+    _passwordController.dispose();
+    _obsecurePassword.dispose();
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+    final authViewModel = Provider.of<AuthViewModel>(context);
     final height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
@@ -64,7 +82,21 @@ class _LoginScreenState extends State<LoginScreen> {
               );
             }
             ),
-            SizedBox(height: height * .1,),
+            SizedBox(height: height * .085,),
+            RoundButton(title: 'Login', onPress: (){
+              if(_emailController.text.isEmpty){
+                Utils.flushBarErrorMessage('Please enter your email', context);
+                //Utils.snackBar('Please enter your email', context);
+                //Utils.toastMessage('Please enter your email');
+              }else if(_passwordController.text.isEmpty){
+                Utils.flushBarErrorMessage('Please enter your password', context);
+              }else if(_passwordController.text.length < 6){
+                Utils.flushBarErrorMessage('Please enter 6 digit password', context);
+              }else{
+                authViewModel.loginApi();
+                print('Api hits');
+              }
+            })
           ]
         ),
       )
