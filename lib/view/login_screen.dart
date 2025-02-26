@@ -83,7 +83,9 @@ class _LoginScreenState extends State<LoginScreen> {
             }
             ),
             SizedBox(height: height * .085,),
-            RoundButton(title: 'Login', onPress: (){
+            RoundButton(title: 'Login',
+                loading: authViewModel.loading,
+                onPress: (){
               if(_emailController.text.isEmpty){
                 Utils.flushBarErrorMessage('Please enter your email', context);
                 //Utils.snackBar('Please enter your email', context);
@@ -93,7 +95,13 @@ class _LoginScreenState extends State<LoginScreen> {
               }else if(_passwordController.text.length < 6){
                 Utils.flushBarErrorMessage('Please enter 6 digit password', context);
               }else{
-                authViewModel.loginApi();
+
+                Map data = {
+                  'email': _emailController.text.toString(),
+                  'password': _passwordController.text.toString(),
+                };
+                
+                authViewModel.loginApi(data, context);
                 print('Api hits');
               }
             })
