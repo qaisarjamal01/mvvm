@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mvvm/res/components/round_button.dart';
 import 'package:mvvm/utils/routes/routes_name.dart';
@@ -103,7 +104,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 };
                 
                 authViewModel.loginApi(data, context);
-                print('Api hits');
+                if (kDebugMode) {
+                  print('Api hits');
+                }
               }
             }),
             SizedBox(height: height * .02,),

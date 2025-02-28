@@ -1,0 +1,2 @@
+D:/OneDrive/Documents/GitHub/mvvm/android/app/.cxx/RelWithDebInfo/k2i1t1w3/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/OneDrive/Documents/GitHub/mvvm/android/app/.cxx/RelWithDebInfo/k2i1t1w3/armeabi-v7a/CMakeFiles/rebuild_cache.dir

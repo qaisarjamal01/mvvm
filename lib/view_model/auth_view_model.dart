@@ -11,8 +11,16 @@ class AuthViewModel with ChangeNotifier{
   bool _loading = false;
   bool get loading => _loading;
 
+  bool _signUpLoading = false;
+  bool get signUpLoading => _signUpLoading;
+
   setLoading(bool value){
     _loading = value;
+    notifyListeners();
+  }
+
+  setSignUpLoading(bool value){
+    _signUpLoading = value;
     notifyListeners();
   }
 
@@ -34,4 +42,21 @@ class AuthViewModel with ChangeNotifier{
     });
   }
 
+  Future<void> signUpApi(dynamic data,BuildContext context) async{
+    setSignUpLoading(true);
+    _myRepo.signUpApi(data).then((value){
+      setSignUpLoading(false);
+      Utils.flushBarErrorMessage('signUp Successfully', context);
+      Navigator.pushNamed(context, RoutesName.home);
+      if(kDebugMode){
+        print(value.toString());
+      }
+    }).onError((error,stackTrace){
+      setSignUpLoading(false);
+      if(kDebugMode){
+        Utils.flushBarErrorMessage(error.toString(), context);
+        print(error.toString());
+      }
+    });
+  }
 }

@@ -1,0 +1,2 @@
+D:/OneDrive/Documents/GitHub/mvvm/android/app/.cxx/RelWithDebInfo/wx5w523s/x86/CMakeFiles/edit_cache.dir
+D:/OneDrive/Documents/GitHub/mvvm/android/app/.cxx/RelWithDebInfo/wx5w523s/x86/CMakeFiles/rebuild_cache.dir

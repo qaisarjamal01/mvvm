@@ -1,0 +1,2 @@
+D:/OneDrive/Documents/GitHub/mvvm/android/app/.cxx/Debug/2f3t4i3i/x86/CMakeFiles/edit_cache.dir
+D:/OneDrive/Documents/GitHub/mvvm/android/app/.cxx/Debug/2f3t4i3i/x86/CMakeFiles/rebuild_cache.dir

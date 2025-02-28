@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mvvm/utils/routes/routes_name.dart';
 import 'package:provider/provider.dart';
@@ -85,7 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 SizedBox(height: height * .085,),
                 RoundButton(title: 'Sign Up',
-                    loading: authViewModel.loading,
+                    loading: authViewModel.signUpLoading,
                     onPress: (){
                       if(_emailController.text.isEmpty){
                         Utils.flushBarErrorMessage('Please enter your email', context);
@@ -102,8 +103,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           'password': _passwordController.text.toString(),
                         };
 
-                        authViewModel.loginApi(data, context);
-                        print('Api hits');
+                        authViewModel.signUpApi(data, context);
+                        if (kDebugMode) {
+                          print('Api hits');
+                        }
                       }
                     }),
                 SizedBox(height: height * .02,),
