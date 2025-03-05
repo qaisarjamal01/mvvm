@@ -25,6 +25,7 @@ class AuthViewModel with ChangeNotifier{
   }
 
   Future<void> loginApi(dynamic data,BuildContext context) async{
+
     setLoading(true);
     _myRepo.loginApi(data).then((value){
       setLoading(false);
@@ -43,6 +44,7 @@ class AuthViewModel with ChangeNotifier{
   }
 
   Future<void> signUpApi(dynamic data,BuildContext context) async{
+
     setSignUpLoading(true);
     _myRepo.signUpApi(data).then((value){
       setSignUpLoading(false);
