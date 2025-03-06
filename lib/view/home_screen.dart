@@ -5,6 +5,7 @@ import 'package:mvvm/view_model/home_view_model.dart';
 import 'package:mvvm/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
 import '../data/response/status.dart';
+import '../utils/utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.pushNamed(context, RoutesName.logIn);
                 });
               },
-              child: Text('Logout',style: TextStyle(fontSize: 17),)),
+              child: const Text('Logout',style: TextStyle(fontSize: 17),)),
           const SizedBox(width: 20,)
         ],
       ),
@@ -46,11 +47,36 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Consumer<HomeViewViewModel>(builder: (context,value,child){
           switch(value.moviesList.status){
             case Status.LOADING:
-              return CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             case Status.ERROR:
-              return Text(value.moviesList.message.toString());
+              return Center(child: Text(value.moviesList.message.toString()));
             case Status.COMPLETED:
-              return Text('kjsjf');
+              return ListView.builder(
+                  itemCount: value.moviesList.data!.movies!.length,
+                  itemBuilder: (context,index){
+                    return Card(
+                      child: ListTile(
+                        leading: Image.network(
+                          height: 40,
+                          width: 40,
+                          fit: BoxFit.cover,
+                          value.moviesList.data!.movies![index].posterurl.toString(),
+                        errorBuilder: (context,error,stack){
+                          return const Icon(Icons.error,color: AppColors.iconColor,);
+                        },
+                        ),
+                        title: Text(value.moviesList.data!.movies![index].title.toString()),
+                        subtitle: Text(value.moviesList.data!.movies![index].year.toString()),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(Utils.averageRating(value.moviesList.data!.movies![index].ratings!).toString()),
+                            Icon(Icons.star,color: AppColors.starColor,)
+                          ],
+                        ),
+                      ),
+                    );
+              });
             default:
               return Container();
           }
