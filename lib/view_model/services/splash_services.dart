@@ -12,9 +12,9 @@ class SplashServices{
 
     getUserData().then((value)async{
       if (kDebugMode) {
-        print(value.token);
+        print(value.token.toString());
       }
-      if(value.token == 'null' || value.token == ''){
+      if(value.token == 'null' || value.token.toString() == ''){
         await Future.delayed(const Duration(seconds: 3));
         Navigator.pushNamed(context, RoutesName.logIn);
       }else{
