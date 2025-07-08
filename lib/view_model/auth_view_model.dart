@@ -30,7 +30,9 @@ class AuthViewModel with ChangeNotifier{
   Future<void> loginApi(dynamic data,BuildContext context) async{
 
     setLoading(true);
-    _myRepo.loginApi(data).then((value){
+    _myRepo.loginApi(data,headers: {
+      'x-api-key': 'reqres-free-v1',
+    }).then((value){
       setLoading(false);
       final userPreference = Provider.of<UserViewModel>(context,listen: false);
       userPreference.saveUser(
@@ -56,7 +58,9 @@ class AuthViewModel with ChangeNotifier{
   Future<void> signUpApi(dynamic data,BuildContext context) async{
 
     setSignUpLoading(true);
-    _myRepo.signUpApi(data).then((value){
+    _myRepo.signUpApi(data,headers: {
+      'x-api-key': 'reqres-free-v1',
+    }).then((value){
       setSignUpLoading(false);
       Utils.flushBarErrorMessage('signUp Successfully', context);
       Navigator.pushNamed(context, RoutesName.home);

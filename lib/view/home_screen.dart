@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(Utils.averageRating(value.moviesList.data!.movies![index].ratings!).toString()),
-                            Icon(Icons.star,color: AppColors.starColor,)
+                            const Icon(Icons.star,color: AppColors.starColor,)
                           ],
                         ),
                       ),
